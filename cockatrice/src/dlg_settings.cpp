@@ -22,6 +22,7 @@
 #include <QSlider>
 #include <QSpinBox>
 #include "carddatabase.h"
+#include "dlg_create_theme.h"
 #include "dlg_settings.h"
 #include "main.h"
 #include "settingscache.h"
@@ -293,7 +294,7 @@ AppearanceSettingsPage::AppearanceSettingsPage()
     QPushButton *createTheme = new QPushButton(tr("Create Theme"), this);
 
     connect(&themeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(themeBoxChanged(int)));
-    connect(createTheme, SIGNAL(clicked()), this, SLOT(themeBoxChanged(int)));
+    connect(createTheme, SIGNAL(clicked()), this, SLOT(actCreateTheme()));
     
     QGridLayout *themeGrid = new QGridLayout;
     themeGrid->addWidget(&themeLabel, 0, 0);
@@ -363,7 +364,8 @@ void AppearanceSettingsPage::themeBoxChanged(int index)
 
 void AppearanceSettingsPage::actCreateTheme()
 {
-
+    DlgCreateTheme dlg(this);
+    dlg.exec();
 }
 
 void AppearanceSettingsPage::retranslateUi()
