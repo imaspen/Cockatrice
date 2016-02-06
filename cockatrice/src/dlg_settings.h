@@ -82,6 +82,7 @@ class AppearanceSettingsPage : public AbstractSettingsPage {
     Q_OBJECT
 private slots:
     void themeBoxChanged(int index);
+    void actCreateTheme();
 private:
     QLabel themeLabel;
     QComboBox themeBox;

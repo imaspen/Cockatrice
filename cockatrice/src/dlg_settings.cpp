@@ -290,12 +290,15 @@ AppearanceSettingsPage::AppearanceSettingsPage()
         if (themeDirs[i] == themeName)
             themeBox.setCurrentIndex(i);
     }
+    QPushButton *createTheme = new QPushButton(tr("Create Theme"), this);
 
     connect(&themeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(themeBoxChanged(int)));
+    connect(createTheme, SIGNAL(clicked()), this, SLOT(themeBoxChanged(int)));
     
     QGridLayout *themeGrid = new QGridLayout;
     themeGrid->addWidget(&themeLabel, 0, 0);
     themeGrid->addWidget(&themeBox, 0, 1);
+    themeGrid->addWidget(createTheme, 1, 1);
 
     themeGroupBox = new QGroupBox;
     themeGroupBox->setLayout(themeGrid);
@@ -356,6 +359,11 @@ void AppearanceSettingsPage::themeBoxChanged(int index)
     QStringList themeDirs = themeManager->getAvailableThemes().keys();
     if(index >= 0 && index < themeDirs.count())
         settingsCache->setThemeName(themeDirs.at(index));
+}
+
+void AppearanceSettingsPage::actCreateTheme()
+{
+
 }
 
 void AppearanceSettingsPage::retranslateUi()
